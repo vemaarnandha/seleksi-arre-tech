@@ -36,7 +36,7 @@ Route::middleware('auth')->group(function () {
 // halaman postingan 
 Route::get('postingan/index', [PostController::class, 'index'])->name('postingan.index');
 // ke halaman detail postingan
-Route::get('postingan/{post_id}', [HomeController::class, 'show'])->name('postingan.show');
+Route::get('postingan/{post_id}', [PostController::class, 'show'])->name('postingan.show');
 // 
 
 require __DIR__.'/auth.php';

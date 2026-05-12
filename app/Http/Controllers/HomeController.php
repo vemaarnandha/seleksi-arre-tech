@@ -25,10 +25,4 @@ class HomeController extends Controller
         return view('home', compact('post', 'search', 'sort'));
     }
 
-    public function show($post_id)
-    {
-        $post = Post::findOrFail($post_id);
-
-        return view('postingan.show-post', compact('post'));
-    }   
 }

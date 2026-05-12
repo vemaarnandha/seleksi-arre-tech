@@ -13,12 +13,19 @@ class PostController extends Controller
 
         $post = Post::where('user_id', Auth::id())
             ->orderBy('updated_at', 'desc')
-            ->paginate(5); 
+            ->paginate(5);
 
         // hitung total post
         $postCount = $post->count();
 
         return view('postingan.index', compact('post', 'postCount'));
+    }
+
+    public function show($post_id)
+    {
+        $post = Post::findOrFail($post_id);
+
+        return view('postingan.show', compact('post'));
     }
 
     public function store(Request $request)
@@ -60,7 +67,11 @@ class PostController extends Controller
     public function update(Request $request, $post_id)
     {
 
-        $post = Post::findOrFail($post_id); // huruf P kapital (konvensi)
+        $post = Post::findOrFail($post_id);
+        // validasi user yang mau update pemilik / bkn  
+        if($post->user_id !== Auth::id()) {
+            abort(403);
+        }
 
         $validated = $request->validate([
             'judul' => 'required|string|max:255',
