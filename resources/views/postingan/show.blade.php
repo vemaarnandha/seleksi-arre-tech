@@ -75,7 +75,7 @@
 
     {{-- Form hapus tersembunyi --}}
     <form id="form-hapus-{{ $post->post_id }}"
-        action="{{ route('postingan.delete', $post->post_id) }}"
+        action="{{ route('postingan.destroy', $post->post_id) }}"
         method="POST" class="d-none">
         @csrf
         @method('DELETE')

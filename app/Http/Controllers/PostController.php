@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\post;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,14 +11,14 @@ class PostController extends Controller
     public function index(Request $request)
     {
 
-        $post = post::where('user_id', Auth::id())
+        $post = Post::where('user_id', Auth::id())
             ->orderBy('updated_at', 'desc')
             ->paginate(5); 
 
         // hitung total post
         $postCount = $post->count();
 
-        return view('postingan', compact('post', 'postCount'));
+        return view('postingan.index', compact('post', 'postCount'));
     }
 
     public function store(Request $request)
@@ -40,7 +40,7 @@ class PostController extends Controller
         $validated['user_id'] = auth()->id();
 
         // Simpan ke database
-        post::create($validated);
+        Post::create($validated);
 
         return redirect()->route('home')->with('success', 'Post berhasil dibuat!');
     }
@@ -48,7 +48,7 @@ class PostController extends Controller
     public function edit($post_id)
     {
         // Pastikan hanya pemilik postingan yang bisa mengedit
-        $post = post::findOrFail($post_id);
+        $post = Post::findOrFail($post_id);
         // Cek apakah user yang sedang login adalah pemilik postingan
         if ($post->user_id !== Auth::id()) {
             abort(403);
@@ -60,7 +60,7 @@ class PostController extends Controller
     public function update(Request $request, $post_id)
     {
 
-        $post = post::findOrFail($post_id); // huruf P kapital (konvensi)
+        $post = Post::findOrFail($post_id); // huruf P kapital (konvensi)
 
         $validated = $request->validate([
             'judul' => 'required|string|max:255',
@@ -81,7 +81,7 @@ class PostController extends Controller
 
     public function destroy($post_id)
     {
-        $post = post::findOrFail($post_id);
+        $post = Post::findOrFail($post_id);
         $post->delete();
 
         return redirect()->back()->with('success', 'Post berhasil dihapus!');

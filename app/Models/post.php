@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\database\Eloquent\Relations\BelongsTo;
 
-class post extends Model
+class Post extends Model
 {
     protected $table = 'post';
     protected $primaryKey = 'post_id'; 

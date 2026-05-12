@@ -41,6 +41,7 @@
 
             <form action="{{ route('post.store') }}" method="POST" class="posting-form" enctype="multipart/form-data">
                 @csrf
+                @method('POST')
                 <h3 class="fw-light">Image Banner</h3>
                 <img class="banner-img" id="preview"
                     src="{{ (isset($post) && $post->gambar) ? asset('storage/' . $post->gambar) : '' }}"

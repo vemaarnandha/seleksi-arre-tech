@@ -463,7 +463,7 @@
                     <i class="bi bi-house-door"></i>
                     <span>Home</span>
                 </a>
-                <a href="{{ route('postingan') }}" class="@if(Route::currentRouteName() == 'postingan') active @endif">
+                <a href="{{ route('postingan.index') }}" class="@if(Route::currentRouteName() == 'postingan.index') active @endif">
                     <i class="bi bi-pencil-fill"></i>
                     <span>Postingan</span>
                 </a>
@@ -523,7 +523,7 @@
                     <i class="bi bi-house"></i>
                     <span>Home</span>
                 </a>
-                <a href="{{ route('postingan') }}" class="@if(Route::currentRouteName() == 'postingan') active @endif">
+                <a href="{{ route('postingan.index') }}" class="@if(Route::currentRouteName() == 'postingan.index') active @endif">
                     <i class="bi bi-pencil-square"></i>
                     <span>Postingan</span>
                 </a>
@@ -579,7 +579,7 @@
                     {{-- Form --}}
                     <form action="{{ route('akun.update', Auth::user()->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        @method('POST')
+                        @method('PUT')
 
                         <div class="modal-body">
 

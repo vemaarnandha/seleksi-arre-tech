@@ -29,7 +29,7 @@
 
             <form action="{{ route('postingan.update', $post->post_id) }}" method="POST" class="posting-form" enctype="multipart/form-data">
                 @csrf
-                @method('POST')
+                @method('PUT')
                 {{-- PRIVIEW BANNER (img) --}}
                 <h3>Image Banner</h3>
                 <img class="banner-img" id="preview" src="{{ $post->gambar ? asset('storage/' . $post->gambar) : '#' }}" >

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'postingan')
+@section('title', 'Index Postingan')
 
 @section('content')
 
@@ -38,7 +38,7 @@
                         </div>
                     </div>
 
-                    <a href="{{ route('postingan-baru') }}" class="profile-btn-create">
+                    <a href="{{ route('postingan.create') }}" class="profile-btn-create">
                         <i class="ra ra-quill-ink"></i>
                         Buat Postingan Baru
                     </a>
@@ -78,7 +78,7 @@
                                         <a href="{{ route('postingan.edit', $p->post_id) }}" class="btn btn-sm btn-outline-success">
                                             <i class="bi bi-pencil-square"></i> Edit
                                         </a>
-                                        <form action="{{ route('postingan.delete', $p->post_id) }}" method="POST" class="d-inline"
+                                        <form action="{{ route('postingan.destroy', $p->post_id) }}" method="POST" class="d-inline"
                                             onsubmit="return confirm('Yakin hapus postingan ini?')">
                                             @csrf
                                             @method('DELETE')
@@ -108,7 +108,7 @@
                 </div>
             </div>
             @foreach ($post as $p)
-                <form id="form-hapus-{{ $p->post_id }}" action="{{ route('postingan.delete', $p->post_id) }}" method="POST"
+                <form id="form-hapus-{{ $p->post_id }}" action="{{ route('postingan.destroy', $p->post_id) }}" method="POST"
                     class="d-none">
                     @csrf
                     @method('DELETE')
