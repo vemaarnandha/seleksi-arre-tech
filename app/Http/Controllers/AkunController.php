@@ -23,7 +23,7 @@ class AkunController extends Controller
 
         $user->save();
 
-        return redirect()->route('postingan')->with('success', 'Profil berhasil diperbarui!');
+        return redirect()->route('postingan.index')->with('success', 'Profil berhasil diperbarui!');
     }
 
     public function destroyProfil($id)
@@ -32,6 +32,6 @@ class AkunController extends Controller
         $user->profil = null;
         $user->save();
 
-        return redirect()->route('postingan')->with('success', 'Foto profil berhasil dihapus!');
+        return redirect()->route('postingan.index')->with('success', 'Foto profil berhasil dihapus!');
     }
 }
